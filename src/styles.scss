@@ -1,0 +1,202 @@
+@import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;700&display=swap");
+$modCyan: hsl(176, 50%, 47%);
+$darkCyan: hsl(176, 72%, 28%);
+$black: hsl(0, 0%, 0%);
+$darkGray: hsl(0, 0%, 48%);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+body {
+  font-size: 16px;
+  font-family: "Commissioner", sans-serif;
+}
+
+header {
+  background-image: url(images/image-hero-mobile.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  min-height: 45vh;
+  padding: 1.5em;
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    .logo {
+      z-index: 9;
+
+      img {
+        width: 100%;
+        display: block;
+      }
+    }
+    .items {
+      position: absolute;
+      bottom: 15%;
+      left: 1.5em;
+      right: 1.5em;
+      background-color: white;
+      border-radius: 10px;
+      scale: 0;
+      transform-origin: top right;
+      z-index: 10;
+      transition: scale 0.5s ease, bottom 0.5s ease;
+      .item {
+        padding: 1.5em;
+        border-bottom: 1px solid rgba(122, 122, 122, 0.2);
+        a {
+          color: $black;
+          font-weight: 500;
+          font-size: 1em;
+        }
+      }
+      .item:last-child {
+        border: none;
+      }
+    }
+    .items.show {
+      scale: 1;
+      bottom: 0%;
+    }
+    .hamburger {
+      width: 15px;
+      height: 15px;
+      background: url(images/icon-hamburger.svg) no-repeat center;
+      z-index: 10;
+      transition: background 0.5s ease;
+    }
+    .hamburger.active {
+      background-image: url(images/icon-close-menu.svg);
+    }
+  }
+}
+.layer {
+  position: absolute;
+  inset: 0;
+  background-color: $black;
+  opacity: 0;
+  z-index: 0;
+  transform-origin: top;
+  transition: opacity 0.5s ease;
+}
+.layer.show {
+  opacity: 0.2;
+}
+main {
+  background-color: hsl(0, 0%, 98%);
+  padding: 0 1.5em;
+  margin-top: -3em;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  section {
+    background-color: white;
+    border: 1px solid rgba(122, 122, 122, 0.2);
+    z-index: 100;
+    border-radius: 10px;
+    padding: 3em 1.5em 2.5em;
+  }
+  .riser {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    text-align: center;
+    .logo {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      img {
+        width: 100%;
+        display: block;
+      }
+    }
+    h1 {
+      font-size: 1.3em;
+    }
+    p {
+      color: $darkGray;
+      font-size: 0.85em;
+      line-height: 1.5;
+    }
+    .btn-row {
+      display: flex;
+      gap: 0.5em;
+      #mainBtn {
+        flex-grow: 1;
+        border: none;
+        background-color: $modCyan;
+        color: white;
+        font-weight: 700;
+        font-family: inherit;
+        padding: 1em;
+        border-radius: 25px;
+        font-size: 1em;
+      }
+      #bookmark {
+        flex-grow: 1;
+        border: none;
+        background: url(images/icon-bookmark.svg) no-repeat center;
+        background-size: contain;
+      }
+    }
+  }
+  .progress {
+    text-align: center;
+    padding: 2em 1.5em;
+    padding-bottom: 2.75em;
+    display: flex;
+    flex-direction: column;
+    gap: 2.75em;
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+      position: relative;
+      span {
+        font-weight: 700;
+        font-size: 2em;
+      }
+      p {
+        color: $darkGray;
+        font-size: 0.9em;
+        font-weight: 500;
+      }
+    }
+    div:nth-child(1):after,
+    div:nth-child(2):after {
+      content: "";
+      position: absolute;
+      height: 1px;
+      bottom: -1.5em;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30%;
+      background-color: $darkGray;
+      opacity: 0.2;
+    }
+    .progress-bar {
+      height: 14px;
+      width: 100%;
+      background-color: hsl(0, 0%, 85%);
+      border-radius: 7px;
+      position: relative;
+      overflow: hidden;
+    }
+    .progress-bar::after {
+      content: "";
+      width: 75%;
+      position: absolute;
+      border-radius: 7px;
+      inset: 0;
+      background-color: $modCyan;
+    }
+  }
+}
