@@ -94,12 +94,13 @@ header {
   inset: 0;
   background-color: $black;
   opacity: 0;
-  z-index: 2;
+  z-index: -1;
   transform-origin: top;
   transition: opacity 0.5s ease;
 }
 .layer.show {
   opacity: 0.2;
+  z-index: 2;
 }
 main {
   background-color: hsl(0, 0%, 98%);
@@ -155,6 +156,7 @@ main {
         padding: 1em;
         border-radius: 25px;
         font-size: 1em;
+        cursor: pointer;
       }
       #bookmark {
         flex-grow: 1;
@@ -288,6 +290,9 @@ main {
     display: flex;
     flex-direction: column;
     gap: 1.25em;
+    scale: 0;
+    transition: scale 0.5s ease;
+    transform-origin: top;
     p {
       color: $darkGray;
       line-height: 1.5;
@@ -312,37 +317,163 @@ main {
       display: flex;
       flex-direction: column;
       gap: 1.5em;
-      border: 1px solid hsla(0, 0%, 48%, 0.2);
-      padding: 2em 1.5em;
+      border: 2px solid hsla(0, 0%, 48%, 0.2);
+      padding: 2em 1.5em 1.5em;
       border-radius: 10px;
       .header {
         display: flex;
         align-items: center;
         gap: 1em;
-        input[type=radio]{
-          
+        input[type="radio"] {
+          appearance: none;
+          width: 20px;
+          height: 20px;
+          border: 1px solid hsla(0, 0%, 48%, 0.2);
+          border-radius: 50%;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        input[type="radio"]:checked::after {
+          content: "";
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: $modCyan;
         }
         label {
           display: flex;
           flex-direction: column;
-          gap: .25em;
+          gap: 0.25em;
           h3 {
             font-size: 1.1em;
           }
-          span{
+          span {
             color: $modCyan;
             font-weight: 500;
           }
         }
       }
+      p:last-of-type {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        span {
+          color: $black;
+          font-size: 1.25em;
+          font-weight: 700;
+        }
+      }
+      .bottom {
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+        border-top: 1px solid hsla(0, 0%, 48%, 0.2);
+        margin: 0 -1.5em;
+        padding: 1.5em 1.5em 0;
+        display: none;
+        span {
+          font-weight: 500;
+          color: $darkGray;
+        }
+        .btn-row {
+          display: flex;
+          width: 100%;
+          gap: 1em;
+          justify-content: space-between;
+          .input-wrap,
+          button {
+            width: 50%;
+            border-radius: 20px;
+            border: none;
+            input {
+              border: 1px solid hsla(0, 0%, 48%, 0.2);
+              position: relative;
+              width: 100%;
+              padding: 1em;
+              border-radius: 25px;
+              padding-left: 30%;
+              font-weight: 700;
+              font-size: 0.9em;
+            }
+            input:focus {
+              outline: none;
+            }
+          }
+          .input-wrap {
+            position: relative;
+          }
+          .input-wrap::before {
+            content: "$";
+            position: absolute;
+            display: block;
+            color: $darkGray;
+            font-weight: 700;
+            width: 15px;
+            height: 15px;
+            top: 25%;
+            left: 15%;
+            z-index: 1;
+          }
+          button {
+            border: 1px solid $modCyan;
+            color: white;
+            background-color: $modCyan;
+            font-family: inherit;
+            font-weight: 700;
+          }
+        }
+      }
     }
-    .option.disabled{
+    .option.disabled {
       opacity: 0.5;
       button {
         cursor: not-allowed;
         background-color: $darkGray;
       }
     }
+    .option:has(input[type="radio"]:checked) {
+      border: 2px solid $modCyan;
+    }
+    .option:has(input[type="radio"]:checked) .bottom {
+      display: flex;
+    }
+  }
+  .modal.show {
+    scale: 1;
+  }
+  .modal-complete {
+    position: absolute;
+    top: 9em;
+    left: 1.5em;
+    right: 1.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25em;
+    text-align: center;
+    padding: 2em 1.5em;
+    z-index: 100;
+    transition: all 0.5s ease;
+    h2 {
+      font-size: 1.15em;
+    }
+    p {
+      color: $darkGray;
+      line-height: 1.5;
+      font-size: 0.85em;
+    }
+    button {
+      color: white;
+      background-color: $modCyan;
+      border: none;
+      font-family: inherit;
+      padding: 1em 2.25em;
+      border-radius: 20px;
+      font-weight: 500;
+    }
   }
 }
-
