@@ -1,5 +1,8 @@
 import logo from "../images/logo-mastercraft.svg";
 const Riser = () => {
+  const handleModal = () => {
+    
+  }
   return (
     <section className="riser">
       <div className="logo">
@@ -10,8 +13,8 @@ const Riser = () => {
         A beautifully handcrafted monitor stand to reduce neck and eye strain.
       </p>
       <div className="btn-row">
-        <button id="mainBtn">Back this project</button>
-        <button id="bookmark"></button>
+        <button onClick={handleModal} id="mainBtn">Back this project</button>
+        <button id="bookmark" aria-label="Bookmark"></button>
       </div>
     </section>
   );

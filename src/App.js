@@ -8,6 +8,7 @@ function App() {
       <Header />
       <div className="layer"></div>
       <Main />
+      <div className="modal-layer"></div>
     </>
   );
 }
