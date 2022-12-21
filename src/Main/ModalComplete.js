@@ -1,7 +1,7 @@
 import check from "../images/icon-check.svg";
-const ModalComplete = ({ handleComplete }) => {
+const ModalComplete = ({ handleComplete, isComplete }) => {
   return (
-    <section className="modal-complete">
+    <section className={`modal-complete ${isComplete ? "show" : ""}`}>
       <div className="img-wrapper">
         <img src={check} alt="" />
       </div>

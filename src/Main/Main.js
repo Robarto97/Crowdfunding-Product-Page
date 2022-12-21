@@ -41,7 +41,7 @@ const Main = () => {
         setPrice={setPrice}
         setBackers={setBackers}
       />
-      {isComplete && <ModalComplete handleComplete={handleComplete} />}
+      <ModalComplete handleComplete={handleComplete} isComplete={isComplete} />
       <div className={`modal-layer ${showLayer ? "show" : ""}`}></div>
     </main>
   );
